@@ -1,11 +1,4 @@
-/* On Mac OS (aka OS X) the ucontext.h functions are deprecated and requires the
-   following define.
-   */
 #define _XOPEN_SOURCE 700
-
-/* On Mac OS when compiling with gcc (clang) the -Wno-deprecated-declarations
-   flag must also be used to suppress compiler warnings.
-   */
 
 #include <signal.h>
 #include <stdio.h>
