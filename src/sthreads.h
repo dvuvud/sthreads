@@ -1,29 +1,16 @@
 #ifndef STHREADS_H
 #define STHREADS_H
 
-/* On Mac OS (aka OS X) the ucontext.h functions are deprecated and requires the
-   following define.
-*/
 #define _XOPEN_SOURCE 700
-
-/* On Mac OS when compiling with gcc (clang) the -Wno-deprecated-declarations
-   flag must also be used to suppress compiler warnings.
-*/
 
 #include <ucontext.h>
 
-/* A thread can be in one of the following states. */
 typedef enum { running, ready, waiting, terminated } state_t;
 
-/* Thread ID. */
 typedef int tid_t;
 
 typedef struct thread thread_t;
 
-/* Data to manage a single thread should be kept in this structure. Here are a
-   few suggestions of data you may want in this structure but you may change
-   this to your own liking.
-*/
 struct thread {
     tid_t tid;
     state_t state;
@@ -34,13 +21,6 @@ struct thread {
     thread_t *all_next;     // global thread list linkage
     thread_t *join_next;    // join waiters
 };
-
-/*******************************************************************************
-                               Simple Threads API
-
-You may add or change arguments to the functions in the API. You may also add
-new functions to the API.
-********************************************************************************/
 
 /* Initialization
 
